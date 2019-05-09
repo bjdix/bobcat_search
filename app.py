@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
 from elasticsearch import Elasticsearch
-from elasticsearch_dsl import Search
-from elasticsearch_dsl.query import MultiMatch, Match
-from elasticsearch_dsl import Q
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 bootstrap = Bootstrap(app)
 es = Elasticsearch()
 
@@ -51,7 +48,7 @@ def local_search():
 
 		    ]
 		}
-		resp = es.search(index='lyrics', doc_type='song', body=payload)
+		resp = es.search(index='lyrics', body=payload)
 		return render_template("localsearch.html", q=q, response=resp)
 	else:
 		selectedValue = request.form['options']
