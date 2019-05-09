@@ -11,8 +11,14 @@ services:
       - discovery.type=single-node
       - bootstrap.memory_lock = true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+  bobcat_search:
+    image: "bjdix/bobcat_search:1.0.0"
+    networks:
+      - frontend
+    restart: always
     ports:
-      - "9200:9200"
+      - "8005:8005"
 
 networks:
   frontend:
