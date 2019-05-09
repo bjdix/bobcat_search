@@ -1,0 +1,5 @@
+# requirements.in
+Flask
+elasticsearch==7.0.0
+gunicorn==19.9.0
+Flask-Bootstrap==3.3.7.1
