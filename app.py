@@ -30,7 +30,7 @@ def local_search():
 		    "query": {
 		        "query_string": {
 		            "analyze_wildcard": True,
-		            "query": str(q),
+		            "query": q,
 		            "fields": ["song", "artist", "rank", "year","lyrics"]
 		        }
 		    },
