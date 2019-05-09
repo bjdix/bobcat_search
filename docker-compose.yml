@@ -11,6 +11,9 @@ services:
       - discovery.type=single-node
       - bootstrap.memory_lock = true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    healthcheck:
+      test: ["CMD", "curl","-s" ,"-f", "http://localhost:9200/_cat/health"]
+      retries: 6
 
   bobcat_search:
     image: "bjdix/bobcat_search:1.0.0"
