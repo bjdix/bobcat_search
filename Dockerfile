@@ -19,6 +19,6 @@ ENV PATH /app:$PATH
 
 # It executes the command python app.py in the app directory.
 # start gunicorn
-CMD ["gunicorn","--config","/app/gunicorn_config.py","app:app"]
+CMD ["gunicorn","--config","/bobcat_search/gunicorn_config.py","bobcat_search:app"]
 
 EXPOSE 8005
