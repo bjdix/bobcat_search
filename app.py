@@ -30,7 +30,7 @@ def local_search():
 		    "query": {
 		        "query_string": {
 		            "analyze_wildcard": True,
-		            "query": q,
+		            "query": str(q),
 		            "fields": ["song", "artist", "rank", "year","lyrics"]
 		        }
 		    },
@@ -48,7 +48,9 @@ def local_search():
 
 		    ]
 		}
+		print("!!!!!!!!!!!!!")
 		resp = es.search(index='lyrics', body=payload)
+		print("??????????????")
 		return render_template("localsearch.html", q=q, response=resp)
 	else:
 		selectedValue = request.form['options']
