@@ -1,16 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from flask_bootstrap import Bootstrap
 from elasticsearch import Elasticsearch
+import os
 
 application = app = Flask(__name__)
 bootstrap = Bootstrap(app)
 es = Elasticsearch()
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	if request.method == 'POST':
 		selectedValue = request.form['options']
-		print (selectedValue)
 		return redirect(url_for('click', selectedValue=selectedValue))
 	return render_template('base.html')
 
@@ -18,7 +22,6 @@ def index():
 def click(selectedValue):
 	if request.method == 'POST':
 		selectedValue = request.form['options']
-		print (selectedValue)
 		return redirect(url_for('click', selectedValue=selectedValue))
 	return render_template(selectedValue + '.html', buttons=['websearch','localsearch'], active_btns=['selectedValue'])
 
@@ -48,9 +51,7 @@ def local_search():
 
 		    ]
 		}
-		print("!!!!!!!!!!!!!")
 		resp = es.search(index='lyrics', body=payload)
-		print("??????????????")
 		return render_template("localsearch.html", q=q, response=resp)
 	else:
 		selectedValue = request.form['options']
