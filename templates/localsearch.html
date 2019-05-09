@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block navbar %}
+    <div class="text-center">
+      <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="bobcat_container">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="{{ url_for('index') }}"> <p id="bobcat_title">Bobcat Search</p></a>
+              </div>
+          </div>
+          <!-- <div class="text-center"> -->
+            <form id="bobcat_nav" method="POST">  
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary" id="bob_web">
+                  <input onchange='this.form.submit();' type="radio" name="options" id="option1" value="websearch" autocomplete="off">Web
+                </label>
+                <label class="btn btn-secondary active" id="bob_local">
+                  <input onchange='this.form.submit();' type="radio" name="options" id="option2" value="localsearch" autocomplete="off" checked>Local
+                </label>
+                 <!-- <input type="submit" value="Submit"> -->
+              </div>
+            </form>
+          <!-- </div> -->
+      </nav>
+    </div>
+{% endblock %}
+{% block app_content %}
+<div class="box">
+  <div class="container-4">
+    <form action="/ls" method="POST" autocomplete="off">
+    <div id="query">        
+        <input type="text" name="q" id="search" value="{{q}}" placeholder="Search..." />
+        <button class="icon"><i class="fa fa-search"></i></button>
+    </div>
+  </form>
+  </div>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{% if response %} 
+<p class='json_http'>number of hits: {{response.hits.total}} </p>
+<div class="panel-group">
+    {% for r in response.hits.hits %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <!-- Button trigger modal -->
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{r._id}}">
+              {{ r._source.song }}   
+          </button> -->
+          <a href="#myModla{{r._id}}" data-toggle="modal" data-target="#myModal{{r._id}}"> {{ r._source.song }} </a>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal{{r._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"> <b>Artist: </b> {{r._source.artist}} 
+                                                                  <b>Song: </b> {{r._source.song}}
+                                                                  <b>Rank: </b> {{r._source.rank}}
+                                                                  <b>Year: </b> {{r._source.year}}
+                                                                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <b>Lyrics: </b> {{ r._source.lyrics }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         <div class="panel-body">
+           <b>Rank: </b> {{ r._source.rank }} 
+           <b>Year: </b> {{ r._source.year }}
+           <b>Artist: </b> {{ r._source.artist }}
+          <div id="dynamic_snippet">
+               {% if r.highlight %}
+                {% if r.highlight.song %}
+                  {% for h in r.highlight.song %} {{ h|safe }} {% endfor %}
+                {% endif %}
+                {% if r.highlight.rank %}
+                  {% for h in r.highlight.rank %} {{ h|safe }} {% endfor %}
+                {% endif %}
+                {% if r.highlight.year %}
+                  {% for h in r.highlight.year %} {{ h|safe }} {% endfor %}
+                {% endif %}
+                {% if r.highlight.artist %}
+                  {% for h in r.highlight.artist %} {{ h|safe }} {% endfor %}
+                {% endif %}
+                {% if r.highlight.lyrics %}
+                  {% for h in r.highlight.lyrics %} {{ h|safe }} {% endfor %}
+                {% endif %}
+              {% endif %}
+          </div>
+         </div>
+         <br><br> 
+    </div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+.navbar.navbar-default .navbar-header .navbar-brand {
+        display: block;
+        text-align:center;
+        float: none;
+        vertical-align: top;
+}
+
+.navbar.navbar-default .navbar-header {
+  float: none; 
+  
+}
+
+.center_div{
+	text-align:center;
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+   
+}
+
+.bobcat_container { background-color: #e8e3db; }
+
+#bobcat_nav { background-color: #6a5638; }
+
+#bobcat_title {
+ font-style: normal;
+ color: #501214; 
+}
+
+#bob_web { color: #ffffff }
+#bob_local { color: #ffffff }
+
+#web_results {
+  padding-top: 20px;
+}
+
+.active {
+  background-color: #501214;
+}
+
+.box{
+  text-align:center;
+  margin: 0 auto;
+  width: 300px;
+  height: 50px;
+  padding-top: 20px;
+}
+
+.panel-group {
+  padding-top: 20px;
+}
+
+body { padding-top: 70px; }
+
+.container-4{
+  overflow: hidden;
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.container-4 input#search{
+  width: 300px;
+  height: 50px;
+  background: #2b303b;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #fff;
+  padding-left: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.container-4 input#search::-webkit-input-placeholder {
+   color: #65737e;
+}
+ 
+.container-4 input#search:-moz-placeholder { /* Firefox 18- */
+   color: #65737e;  
+}
+ 
+.container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #65737e;  
+}
+ 
+.container-4 input#search:-ms-input-placeholder {  
+   color: #65737e;  
+}
+
+.container-4 button.icon{
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+ 
+  border: none;
+  background: #232833;
+  height: 50px;
+  width: 50px;
+  color: #4f5b66;
+  opacity: 0;
+  font-size: 10pt;
+ 
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease;
+}
+
+.container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
+  outline: none;
+  opacity: 1;
+  margin-left: -50px;
+}
+ 
+.container-4:hover button.icon:hover{
+  background: #501214;
+}
+
+*:focus {
+    outline: none;
+}
+
+.radio{display:inline-block;}
+
+#pole, #mainline, #json, #http, #sidebar, #error, #paging1, #paging2, #noresults
+    {display: none;}
+
+#paging1, #paging2 { text-align:center; }
+
+#related {
+  font-size: 15px;
+}
+
+.json_http {
+  font-size: 15px;
+  text-align:center;
+}
+
+.dynamic_snippet {
+  text-align:center;
+}
+
+em
+  {background-color: #FFFF00;}
+
+/*h3 a:visited {color: #087 !important;}
+h3 a:link {color: #087 !important;}*/

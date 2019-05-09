@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block navbar %}
+    <div class="text-center">
+      <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="bobcat_container">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="{{ url_for('index') }}"> <p id="bobcat_title">Bobcat Search</p></a>
+              </div>
+          </div>
+          <!-- <div class="text-center"> -->
+            <form id="bobcat_nav" method="POST">  
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active" id="bob_web">
+                  <input onchange='this.form.submit();' type="radio" name="options" id="option1" value="websearch" autocomplete="off" checked>Web
+                </label>
+                <label class="btn btn-secondary" id="bob_local">
+                  <input onchange='this.form.submit();' type="radio" name="options" id="option2" value="localsearch" autocomplete="off">Local
+                </label>
+                 <!-- <input type="submit" value="Submit"> -->
+              </div>
+            </form>
+      </nav>
+    </div>
+{% endblock %}
+{% block app_content %}
+<body onload="document.forms.bing.query.focus();">
+
+	<div class="box">
+	  <div class="container-4">
+	  	<form name="bing" onsubmit="this.offset.value = 0; return bingWebSearch(this.query.value,
+				    bingSearchOptions(this), getSubscriptionKey())" autocomplete="off">
+			<div id="query">		    
+			    <input type="search" name="query" id="search" placeholder="Search..." />
+			    <button class="icon"><i class="fa fa-search"></i></button>
+			    <input type=hidden name="count" value="25">
+			    <input type=hidden name="offset" value="0">
+			    <input type=hidden name="where" value="en-US">
+			</div>
+		</form>
+	  </div>
+	</div>
+
+	<div id="web_results">
+		<div id="paging1">
+		    <div id="_paging1"></div>
+		</div>
+
+		<div id="mainline">
+		    <div id="_mainline"></div>
+		</div>
+
+		<div id="paging2">
+		    <div id="_paging2"></div>
+		</div>
+
+		<div id="json">
+		    <h3 class='json_http'><a href="#" onclick="return toggleDisplay('_json')">JSON</a></h3>
+		    <div id="_json" style="display: none"></div>
+		</div>
+
+		<div id="http">
+		    <h3 class='json_http'><a href="#" onclick="return toggleDisplay('_http')">HTTP</a></h3>
+		    <div id="_http" style="display: none"></div>
+		</div>
+	</div>
+
+</body>
+{% endblock %}
