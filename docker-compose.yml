@@ -20,6 +20,8 @@ services:
 
   bobcat_search:
     image: "bjdix/bobcat_search:1.0.0"
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     networks:
       - frontend
     restart: always
