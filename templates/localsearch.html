@@ -36,7 +36,6 @@
 </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 {% if response %} 
-<p class='json_http'>number of hits: {{response.hits.total}} </p>
 <div class="panel-group">
     {% for r in response.hits.hits %}
     <div class="panel panel-default">
