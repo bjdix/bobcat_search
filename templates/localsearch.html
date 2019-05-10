@@ -37,55 +37,55 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 {% if response %} 
 <div class="panel-group">
-    {% for r in response.hits.hits %}
+    {% for r in response['hits']['hits'] %}
     <div class="panel panel-default">
         <div class="panel-heading">
           <!-- Button trigger modal -->
           <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{r._id}}">
               {{ r._source.song }}   
           </button> -->
-          <a href="#myModla{{r._id}}" data-toggle="modal" data-target="#myModal{{r._id}}"> {{ r._source.song }} </a>
+          <a href="#myModla{{r._id}}" data-toggle="modal" data-target="#myModal{{r._id}}"> {{ r['_source']['song'] }} </a>
           <!-- Modal -->
           <div class="modal fade" id="myModal{{r._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel"> <b>Artist: </b> {{r._source.artist}} 
-                                                                  <b>Song: </b> {{r._source.song}}
-                                                                  <b>Rank: </b> {{r._source.rank}}
-                                                                  <b>Year: </b> {{r._source.year}}
+                  <h5 class="modal-title" id="exampleModalLabel"> <b>Artist: </b> {{ r['_source']['artist'] }} 
+                                                                  <b>Song: </b> {{ r['_source']['song'] }}
+                                                                  <b>Rank: </b> {{ r['_source']['rank'] }}
+                                                                  <b>Year: </b> {{ r['_source']['year'] }}
                                                                   </h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <b>Lyrics: </b> {{ r._source.lyrics }}
+                  <b>Lyrics: </b> {{ r['_source']['lyrics'] }}
                 </div>
               </div>
             </div>
           </div>
         </div>
          <div class="panel-body">
-           <b>Rank: </b> {{ r._source.rank }} 
-           <b>Year: </b> {{ r._source.year }}
-           <b>Artist: </b> {{ r._source.artist }}
+           <b>Rank: </b> {{ r['_source']['rank'] }} 
+           <b>Year: </b> {{ r['_source']['year'] }}
+           <b>Artist: </b> {{ r['_source']['artist'] }}
           <div id="dynamic_snippet">
-               {% if r.highlight %}
-                {% if r.highlight.song %}
-                  {% for h in r.highlight.song %} {{ h|safe }} {% endfor %}
+               {% if r['highlight'] %}
+                {% if r['highlight']['song'] %}
+                  {% for h in r['highlight']['song'] %} {{ h|safe }} {% endfor %}
                 {% endif %}
-                {% if r.highlight.rank %}
-                  {% for h in r.highlight.rank %} {{ h|safe }} {% endfor %}
+                {% if r['highlight']['rank'] %}
+                  {% for h in r['highlight']['rank'] %} {{ h|safe }} {% endfor %}
                 {% endif %}
-                {% if r.highlight.year %}
-                  {% for h in r.highlight.year %} {{ h|safe }} {% endfor %}
+                {% if r['highlight']['year'] %}
+                  {% for h in r['highlight']['year'] %} {{ h|safe }} {% endfor %}
                 {% endif %}
-                {% if r.highlight.artist %}
-                  {% for h in r.highlight.artist %} {{ h|safe }} {% endfor %}
+                {% if r['highlight']['artist'] %}
+                  {% for h in r['highlight']['artist'] %} {{ h|safe }} {% endfor %}
                 {% endif %}
-                {% if r.highlight.lyrics %}
-                  {% for h in r.highlight.lyrics %} {{ h|safe }} {% endfor %}
+                {% if r['highlight']['lyrics'] %}
+                  {% for h in r['highlight']['lyrics'] %} {{ h|safe }} {% endfor %}
                 {% endif %}
               {% endif %}
           </div>
