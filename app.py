@@ -57,7 +57,7 @@ def local_search():
 		    ]
 		}
 		payload = json.dumps(payload)
-		url = "http://elasticsearch:9200/bobcat_search/_search"
+		url = "http://elasticsearch:9200/_search"
 		response = requests.request("GET", url, data=payload, headers=headers)
 		response_dict_data = json.loads(str(response.text))
 		return render_template("localsearch.html", q=q, response=response_dict_data)
