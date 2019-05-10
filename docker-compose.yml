@@ -7,9 +7,6 @@ services:
     restart: always
     volumes:
       - ./Elasticsearch/data:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
-      - "9300:9300"
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock = true
