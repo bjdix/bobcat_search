@@ -1,11 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory,jsonify
 from flask_bootstrap import Bootstrap
 from elasticsearch import Elasticsearch
 import os
+import requests,json
 
 application = app = Flask(__name__)
 bootstrap = Bootstrap(app)
-es = Elasticsearch()
+# es = Elasticsearch()
+
+headers = {
+    'Content-Type': "application/json",
+    'cache-control': "no-cache",
+}
 
 @app.route('/favicon.ico')
 def favicon():
@@ -51,8 +57,13 @@ def local_search():
 
 		    ]
 		}
-		resp = es.search(index='lyrics', body=payload)
-		return render_template("localsearch.html", q=q, response=resp)
+		# resp = es.search(index='lyrics', body=payload)
+		payload = json.dumps(payload)
+		url = "http://elasticsearch:9200/_search"
+		response = requests.request("GET", url, data=payload, headers=headers)
+		response_dict_data = json.loads(str(response.text))
+		return render_template("localsearch.html", q=q, response=response_dict_data)
+		# return render_template("localsearch.html", q=q, response=resp)
 	else:
 		selectedValue = request.form['options']
 		return redirect(url_for('click', selectedValue=selectedValue))
