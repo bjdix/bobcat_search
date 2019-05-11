@@ -38,10 +38,12 @@ try {
 function getSubscriptionKey() {
     var key = retrieveValue(API_KEY_COOKIE);
     while (key.length !== 32) {
-        key = prompt("Enter Bing Search API subscription key:", "").trim();
+        // key = prompt("Enter Bing Search API subscription key:", "").trim();
+        key = 'ae8c63c867034217afbedab70b05b945';
     }
     // Always set the cookie in order to update the expiration date.
     storeValue(API_KEY_COOKIE, key);
+
     return key;
 }
 
